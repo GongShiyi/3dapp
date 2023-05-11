@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="../Bootstrap/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/public.css">
+    <title></title>
+    <style>
+        body{
+            box-sizing: border-box;
+            padding-top: 60px;
+        }
+        .left{
+            width: 1300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+            border-radius: 20px;
+        
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .nav-link{
+            display: flex;
+            justify-content: center;
+            color: #000000;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .nav-link:hover{
+            color: #e01a19;
+        }
+        .font{
+            width: 40%;
+        }
+        .btn{
+            background: #000000;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 24px;
+            margin-right: 60px;
+            margin-top: 20px;
+        }
+        .btn:hover{
+            color: #e01a19;
+            background: #ffffff;
+        }
+        .text{
+            font-size: 24px;
+            width: 60%;
+        }
+    </style>
+</head>
+<body style="background: #f5f5f7">
+<div class="row" style="display: flex;align-items: center;margin-left: 40px">
+    <div class="col-8" style="display: flex;flex-direction: column;align-items: center">
+        <div class="left">
+            <nav class="navbar navbar-expand-sm bg-light justify-content-center row">
+                <ul class="navbar-nav col-6">
+                    <li class="nav-item col">
+                        <a class="nav-link" onclick="jumpModel(1)">Coca cola</a>
+                    </li>
+                    <li class="nav-item col">
+                        <a class="nav-link" onclick="jumpModel(2)">Fanta</a>
+                    </li>
+                    <li class="nav-item col">
+                        <a class="nav-link" onclick="jumpModel(3)">Schweppes</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <div id="3d">
+                    <x3d id="1" class="model" width = "1300px" height="600px">
+                        <scene>
+                            <inline nameSpaceName="model" mapDEFToID="true" onclick="animateModel()" url="../model/coke.x3d">
+                            </inline>
+                        </scene>
+                    </x3d>
+                    <x3d id="2" class="model" width = "1300px" height="600px">
+                        <scene>
+                            <inline nameSpaceName="model" mapDEFToID="true" onclick="animateModel()" url="../model/Fanta.x3d">
+                            </inline>
+                        </scene>
+                    </x3d>
+                    <x3d id="3" class="model" width = "1300px" height="600px">
+                        <scene>
+                            <inline nameSpaceName="model" mapDEFToID="true" onclick="animateModel()" url="../model/Schweppes.x3d">
+                            </inline>
+                        </scene>
+                    </x3d>
+                </div>
+            </div>
+        </div>
+        <div class="text">
+
+        </div>
+        <div class=" row font" style="width: 800px;">
+            <button class="btn btn-default col" onclick="cameraTop()">up</button>
+            <button class="btn btn-default col" onclick="cameraBottom()">down</button>
+            <button class="btn btn-default col" onclick="cameraLeft()">left</button>
+            <button class="btn btn-default col" onclick="cameraRight()">right</button>
+        </div>
+    </div>
+    <div class="col-4 fontImg">
+
+    </div>
+</div>
+<!--bootstrap4文件 jquery文件-->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="../Bootstrap/js/bootstrap.min.js"></script>
+<script src="../Bootstrap/js/popper.min.js"></script>
+<script src='../js/x3dom.js'></script>
+<script src="../js/custom.js" crossorigin="anonymous"></script>
+
+<script src="../js/swap_restyle.js"></script>
+
+<script src="../js/gallery_generator.js"></script>
+<script src="../js/getJsonData.js"></script>
+<script src="../js/modelInteractions.js"></script>
+<script src="../js/jquery.fancybox.min.js"></script>
+<script src="../js/x3dom.js"></script>
+<script src="../js/kefu.js"></script>
+<script type="text/javascript">
+    var kefu = new Kefu({
+        index: "../webpage/index.html",
+        tel: "contact us",
+        qq: {
+            state: true,
+            imgURL:"../img/图标列表可乐.png"
+        },
+        wechatPerson: {
+            state: true,
+            imgURL: "../img/图标列表芬达.png" 
+        },
+        wechatofficial: {
+            state: true,
+            imgURL: "../img/图标列表怡泉.png" 
+        }
+    });
+    $(function () {
+        //ajax request background model data
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "../php/index.php",
+                // data: "{username:'" + username + "',password:'" + password + "'}",
+                success: function(result) {
+                    let data
+                    data = [
+                        {
+                            id:1,
+                            name: "coke",
+                            modelSrc:"../model/coke.x3d",
+                            text:"On May 8, 1886, Dr. John Pemberton sold the first Coca-Cola at Jacobs' Pharmacy in downtown Atlanta. Coca-Cola, which served nine drinks a day in its first year, was a new pick-me-up at first.",
+                            imgTitle:'THE COCA COLA CAN IN CINEMA 4D',
+                            imgSrc: ''
+                        },{
+                            id:2,
+                            name: "sprite",
+                            modelSrc:"../model/Fanta.x3d",
+                            text:"Fanta originated in Germany as a Coca-Cola alternative in 1940 due to the American trade embargo of Nazi Germany, which affected the availability of Coca-Cola ingredients.",
+                            imgTitle:'THE FANTA BOTTLE IN BLENDER',
+                            imgSrc:'../img/Fanta.jpg'
+                        },{
+                            id:3,
+                            name: "Schweppes",
+                            modelSrc:"../model/Schweppes.x3d",
+                            text:"Schweppes was born in 1783 under the guidance of Jacob Schweppes when he discovered a way to manufacture carbonated mineral water.",
+                            imgTitle:'THE SCHWEPPERS BOTTLE IN BLENDER',
+                            imgSrc:'../img/Schweppers.jpg'
+                        },
+                    ]
+                    // try {
+                    //     data = JSON.parse(result)
+                    // }catch (e) {
+                    //
+                    // }
+                    ajaxModelData(data)
+                }
+            })
+        //render model
+        const ajaxModelData = (data) =>{
+            //url id
+            let url = window.location.href;
+            function getCaption (obj) {
+                const index = obj.lastIndexOf("?")
+                return obj.substring(index, obj.length)
+            }
+            let model_id = Number(getCaption(url).slice(4));
+            // let model_id = localStorage.getItem('id')
+            $('.model').css('display','none')
+            $(`#${model_id}`).css('display','block')
+            $('.text').append(`<i>${data[model_id-1].text}</i>`)
+            $('.fontImg').append(`<div style="width: 400px;height: 700px;border-radius: 10px;display: flex;flex-direction:column;align-items: end;justify-content: center;margin-left: 60px">
+            <img src="${data[model_id-1].imgSrc}" alt="" style="width:100%;">
+            <i style="font-size: 30px;margin-top: 10px">${data[model_id-1].imgTitle}</i>
+        </div>`)
+        }
+    })
+       //button function
+    function cameraLeft()
+    {
+        document.getElementById('model__CameraLeft').setAttribute('bind', 'true');
+    }
+
+    function cameraRight()
+    {
+        document.getElementById('model__CameraRight').setAttribute('bind', 'true');
+    }
+
+    function cameraTop()
+    {
+        document.getElementById('model__CameraTop').setAttribute('bind', 'true');
+    }
+
+    function cameraBottom()
+    {
+        document.getElementById('model__CameraBottom').setAttribute('bind', 'true');
+    }
+    function animateModel()
+    {
+        if(document.getElementById('model__RotationTimer').getAttribute('enabled')!== 'true')
+            document.getElementById('model__RotationTimer').setAttribute('enabled', 'true');
+        else
+            document.getElementById('model__RotationTimer').setAttribute('enabled', 'false');
+    }
+    const jump = (url)=>{
+        window.location.href = url;
+    }
+    const jumpModel = (id)=>{
+        window.top.location.href = '../display/3dPage.html?id='+id;
+        localStorage.setItem('id',id);
+    }
+</script>
+</body>
+</html>

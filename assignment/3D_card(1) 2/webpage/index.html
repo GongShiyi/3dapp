@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/public.css">
+    <title>homePage</title>
+    <style>
+        .dropdown-item>div{
+            width: 4rem;
+            display: flex;
+            justify-content: center;
+        }
+        .dropdown-item div>img{
+            width: 100%;
+        }
+        .dropdown-item:nth-child(2)>div{
+            margin: 0.6rem 0;
+        }
+        .page{
+            display: block;
+            height: 100vh;
+            border: none;
+        }
+        .navbar{
+            background-color: rgb(0,0,0);
+            box-sizing: border-box;
+            padding: 1vh 2vw;
+        }
+        .btn{
+            background: #000000;
+            border: none;
+        }
+        .dropdown-item{
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<!--入口文件-->
+<!--导航栏-->
+<nav class="navbar navbar-expand-sm justify-content-center row">
+    <ul class="navbar-nav justify-content-between align-items-center col">
+        <li class="nav-item">
+            <div class="container nav-link">
+                <div class="dropdown">
+                    <a class="btn" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../img/列表2.png" alt="" style="width: 36px;">
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 400px;background: #000000">
+                        <div id="demoBtn" class="dropdown-item" data-toggle="collapse" data-target="#demo"><i>Statement of Originality</i></div>
+                        <p id="demo" class="collapse" style="color: #ffffff;padding: 0 1vw">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <div id="demoBtn2" class="dropdown-item" data-toggle="collapse" data-target="#demo2"><i>References</i></div>
+                        <p id="demo2" class="collapse" style="color: #ffffff;padding: 0 1vw">
+                            coca-cola.(no date)<br>
+                            Available at:<br>
+                            https://www.coca-cola.co.uk/home <br>
+
+                            H7006 Web 3D Applications labs (22/23)<br>
+                            Available at:<br>
+                            https://canvas.sussex.ac.uk/courses/23366 <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">
+                <img src="../img/coca%20cola.svg" alt="" style="width: 400px;">
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">
+                <img src="../img/搜索小.png" alt="" style="width: 36px;">
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!--页面组件-->
+<iframe class="page home" width="100%" src="../display/homePage.html" style=""></iframe>
+<!--导入的bootstrap4文件，以及jquery文件-->
+<script src="../js/kefu.js"></script>
+<script src="../js/jquery-3.6.4.js"></script>
+<script src="../Bootstrap/js/bootstrap.min.js"></script>
+<script src="../Bootstrap/js/popper.min.js"></script>
+<!--jq修改dom-->
+<script>
+    var kefu = new Kefu({
+        index: "index.html",//首页地址
+        tel: "contact us",//联系
+        qq: {
+            state: true,
+            imgURL:"../img/图标列表可乐.png"//图片路径
+        },
+        wechatPerson: {
+            state: true,
+            imgURL: "../img/图标列表芬达.png" //图片路径
+        },
+        wechatofficial: {
+            state: true,
+            imgURL: "../img/图标列表怡泉.png" //图片路径
+        }//微信公众号
+    });
+    //展示页跳转
+    const jumpModel = (id)=>{
+        window.top.location.href = '../display/3dPage.html?id='+id;
+        localStorage.setItem('id',id);
+    }
+    const jump = (url)=>{
+        window.location.href = url;
+    }
+    $("#demoBtn").hover(function () {
+        $('#demo').collapse('show');
+    }, function () {
+        $('#demo').collapse('hide');
+    });
+    $("#demoBtn2").hover(function () {
+        $('#demo2').collapse('show');
+    }, function () {
+        $('#demo2').collapse('hide');
+    });
+</script>
+</body>
+</html>
